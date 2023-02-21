@@ -1,2 +1,2 @@
 #!/bin/bash
-gcc -c $PWD/$CFILE
+gcc -c $PWD/$CFILE -o $CFILE
