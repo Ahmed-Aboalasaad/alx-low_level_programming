@@ -6,6 +6,9 @@
 */
 int main(void)
 {
-	fprintf(stderr, "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n");
+	char *one = "and that piece of art is us";
+	char *two = "eful\" - Dora Korpar, 2015-10-19\n";
+
+	fprintf(stderr, "%c%c", *one, *two);
 	return (1);
 }
