@@ -6,9 +6,9 @@
 */
 int main(void)
 {
-	char *one = "and that piece of art is "
-			"useful\" - Dora Korpar, 2015-10-19"
+	char str[] = "and that piece of art is "
+			"useful\" - Dora Korpar, 2015-10-19";
 
-	fprintf(stderr, "%c", *one);
+	fprintf(stderr, "%s", str);
 	return (1);
 }
