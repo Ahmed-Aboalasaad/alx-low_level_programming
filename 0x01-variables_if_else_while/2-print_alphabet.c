@@ -9,9 +9,10 @@ int main(void)
 {
 	int i;
 
-	for (i = 97; i < 79 + 26; i++)
+	for (i = 97; i < 97 + 26; i++)
 	{
 		putchar(i);
 	}
+	putchar('\n');
 	return (0);
 }
