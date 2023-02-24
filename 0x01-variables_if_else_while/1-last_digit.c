@@ -4,7 +4,7 @@
 /* more headers goes there */
 
 /**
-*main - returns whether the randolmy generaged number 
+*main - returns whether the randolmy generaged number
 *is positive, negative, or zero
 *Return: 0
 */
@@ -21,7 +21,6 @@ int main(void)
 	else if (n < 0)
 	{
 		printf("%d is negative\n", n);
-	
 	}
 	else
 	{
