@@ -10,23 +10,21 @@ void times_table(void)
 
 	for (i = 0; i < 10; i++)
 	{
-		/* the same for all lines */
-		_putchar('0');
-		_putchar(',');
 
-		for (j = 1; j < 10; j++)
+		for (j = 0; j < 10; j++)
 		{
-			/* a space for all the numbers */
-			_putchar(' ');
-
 			/* write the number in a formatted way */
-			if (i * j < 10)
+			if (j == 0)
+				_putchar('0');
+			else if (i * j < 10)
 			{
 				_putchar(' ');
-				_putchar(48 + j);
+				_putchar(' ');
+				_putchar(48 + i * j);
 			}
 			else
 			{
+				_putchar(' ');
 				_putchar(48 + i * j / 10);
 				_putchar(48 + i * j % 10);
 			}
