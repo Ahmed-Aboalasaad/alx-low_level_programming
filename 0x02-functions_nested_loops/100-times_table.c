@@ -1,6 +1,5 @@
 #include "main.h"
 
-
 void print_n_digits(int n, int i, int j);
 
 /**
@@ -45,6 +44,14 @@ void print_times_table(int n)
 	}
 }
 
+/**
+ * print_n_digits - prints the digits in a formatted way according to
+ * the given indeces of the nested loops and how many digits you wanna print
+ * @n: number of digits to be printed
+ * @i: index of the outer loop
+ * @j: index of the inner loop
+ * Return: returns nothing
+ */
 void print_n_digits(int n, int i, int j)
 {
 	if (n == 1)
