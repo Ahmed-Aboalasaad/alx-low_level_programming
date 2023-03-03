@@ -12,7 +12,7 @@ int main(void)
 	beforeLast = 1,
 	new;
 
-	printf("1 2 ");
+	printf("1, 2, ");
 	for (i = 0; i < 48; i++)
 	{
 		new = last + beforeLast; /* the new value */
