@@ -7,7 +7,7 @@
  */
 int main(void)
 {
-	unsigned long sum = 0,
+	unsigned long sum = 2,
 				  last = 2,
 				  beforeLast = 1,
 				  new;
@@ -23,7 +23,7 @@ int main(void)
 		if (new % 2 == 0)
 			sum += new;
 	}
-	printf("%ld\n", new);
+	printf("%ld\n", sum);
 
 	return (0);
 }
