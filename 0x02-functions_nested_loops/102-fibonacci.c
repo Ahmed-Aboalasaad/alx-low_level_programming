@@ -20,5 +20,6 @@ int main(void)
 		last = new;
 		printf("%ld ", new);
 	}
+	printf("\n");
 	return (0);
 }
