@@ -8,7 +8,7 @@
 int main(void)
 {
 	int i;
-	unsigned long long last = 2,
+	unsigned long last = 2,
 	beforeLast = 1,
 	new;
 
@@ -18,7 +18,7 @@ int main(void)
 		new = last + beforeLast; /* the new value */
 		beforeLast = last;
 		last = new;
-		printf("%lld ", new);
+		printf("%ld ", new);
 	}
 	return (0);
 }
