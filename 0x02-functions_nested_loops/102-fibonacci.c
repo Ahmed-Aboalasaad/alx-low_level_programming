@@ -18,8 +18,12 @@ int main(void)
 		new = last + beforeLast; /* the new value */
 		beforeLast = last;
 		last = new;
-		printf("%ld ", new);
+		if (i == 47)
+		{
+			printf("%ld\n", new);
+			break;
+		}
+		printf("%ld, ", new);
 	}
-	printf("\n");
 	return (0);
 }
