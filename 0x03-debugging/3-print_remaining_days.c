@@ -14,21 +14,17 @@ void print_remaining_days(int month, int day, int year)
 {
 	if (isLeap(year))
 	{
-		if (month >= 2 && day >= 60) /*  */
+		/* for any day starting from 1st of March, increase the day by one
+			because the convert_day() function doesn't consider leap years */
+		if (month >= 3 && day >= 60)
 			day++;
 
-		if (day == 61 || day == 62) /*  */
-		printf("Invalid date: %02d/%02d/%04d\n", month, day - 31, year);
-
-		else
-		{
-			printf("Day of the year: %d\n", day);
-			printf("Remaining days: %d\n", 366 - day);
-		}
+		printf("Day of the year: %d\n", day);
+		printf("Remaining days: %d\n", 366 - day);
 	}
 	else /* not a leap year */
 	{
-		if (month == 2 && day >= 59) /* 29, 30, 31 of Feb. */
+		if (month == 2 && day == 60) /* 29 of Feb. */
 			printf("Invalid date: %02d/%02d/%04d\n", month, day - 31, year);
 		
 		else
