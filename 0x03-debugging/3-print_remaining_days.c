@@ -2,6 +2,28 @@
 #include "main.h"
 
 /**
+ * isLeap - decides whether a year is a leap year or not
+ * @year: the year
+ * Return: 0 or 1
+*/
+int isLeap(int year)
+{
+	int isLeap = 0;
+
+	if (year % 4 == 0)
+	{
+		isLeap = 1;
+		if (year % 100 == 0)
+		{
+			isLeap = 0;
+			if (year % 400 == 0)
+				isLeap = 1;
+		}
+	}
+	return isLeap;
+}
+
+/**
 * print_remaining_days - takes a date and prints how many days are
 * left in the year, taking leap years into account
 * Expected input -> every thing is valid except month-day-year combinations
