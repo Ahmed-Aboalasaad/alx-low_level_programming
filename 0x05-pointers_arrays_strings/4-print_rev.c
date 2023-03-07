@@ -9,7 +9,13 @@ void print_rev(char *s)
 {
 	int i, length;
 
-	length = _strlen(s);
+	length = 0;
+	while (1)
+	{
+		if (!s[length]) /* when you encounter the null character */
+			break;
+		length++;
+	}
 
 	for (i = 0; s[i]; i++)
 	{
