@@ -18,6 +18,10 @@ void puts_half(char *str)
 	}
 
 	n = (length % 2 == 0) ? (length / 2) : (length - 1) / 2;
+	_putchar('n');
+	_putchar(':');
+	_putchar(' ');
+	_putchar(48 + n); 
 	for (i = n; str[i]; i++)
 	{
 		_putchar(str[i]);
