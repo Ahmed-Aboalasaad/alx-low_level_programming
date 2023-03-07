@@ -8,21 +8,35 @@
 void rev_string(char *s)
 {
 	int length, i, j;
-	char *clone = "";
 
 	length = 0;
 	while (1)
 	{
-		if (!s[length]) /* when you encounter the null character */
+		if (!s[length]) /* break when you encounter the null character */
 			break;
 		length++;
 	}
 
-	/* load the clone string with the reversed text */
-	for (i = 0, j = length; i < length ; i++, j--)
-		clone[i] = s[j];
+	/* I'm using the same metod of substituting 2 integers without third one */
+	if (length % 2 == 0)
+	{
+		/* add the corresponding form right side to the left side */
+		for (i = 0; i < length / 2; i++)
+			s[i] += s[length - 1 - i];
 
-	/* put the reversed text back in the string */
-	for (i = 0; i < length; i++)
-		s[i] = clone[i];
+		/*
+		 * replace corresponding right with (left - right)
+		 * different in odd than even
+		 */
+		if (length % 2 == 0)
+			for (i = length / 2, j = (length / 2) - 1; i < length; i++, j--)
+				s[i] = s[j] - s[i];
+		else
+			for (i = (length / 2) + 1, j = (length / 2) - 1; i < length; i++, j--)
+				s[i] = s[j] - s[i];
+
+		/* replace corresponding left with (left - right) */
+		for (i = 0; i < length / 2; i++)
+			s[i] -= s[length - 1 - i];
+	}
 }
