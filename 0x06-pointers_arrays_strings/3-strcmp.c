@@ -8,42 +8,29 @@
  */
 int _strcmp(char *s1, char *s2)
 {
-	int i, indicator, breaker;
+	int i;
 
-	indicator = 0;
-	for (i = 0; s1[i] && s2[i]; i++)
+	for (i = 0; 1; i++)
 	{
-		if (!s1[i] && !s2[i])
+		/* there are still characters in both the strings */
+		if (s1[i] && s2[i])
 		{
-			indicator = 0;
-			breaker = i;
-			break;
+			if (s1[i] == s2[i])
+				continue;
+			else
+				return (s1[i] - s2[i]);
 		}
 
-		if (!s1[i])
-		{
-			indicator = -1;
-			breaker = i;
-			break;
-		}
+		/* the first string is done (first is shorter) */
+		else if (!s1[i] && s2[i])
+			return (-s2[i]);
 
-		if (!s2[i])
-		{
-			indicator = 1;
-			breaker = i;
-			break;
-		}
+		/* the second string is done (second is shorter) */
+		else if (s1[i] && !s2[i])
+			return (s1[i]);
 
-		if (*s1 == *s2)
-			continue;
+		/* both of the strings is done (they're equal) */
 		else
-			return (*s1 - *s2);
+			return (0);
 	}
-
-	if (indicator == 1)
-		return (s1[breaker]);
-	else if (indicator == 0)
-		return (0);
-	else
-		return (0 - s2[breaker]);	
 }
