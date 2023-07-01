@@ -2,6 +2,7 @@
 
 /**
  * rot13 - encode a string using the rot13 cypher
+ * @s: a pointer to the string to be encoded
  *
  * Return: a pointer to the encoded string
  */
