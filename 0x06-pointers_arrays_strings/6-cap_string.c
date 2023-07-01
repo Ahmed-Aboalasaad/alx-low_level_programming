@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * cap_string - capitalizes all words of a string.
@@ -7,14 +8,22 @@
  */
 char *cap_string(char *s)
 {
-	int i;
+	int i, j;
+	char separators[] = " \t\n,;.!?\"(){}";
 
 	for (i = 0; s[i]; i++)
 	{
-		if (s[i] >= 97 && s[i] <= 122)
-			s[i] -= 32;
-		else
-			continue;
+		if (s[i] == '\t')
+			s[i] = ' ';
+		for (j = 0; separators[j]; j++)
+			/* if you found a separator followed by a small character */
+			if (s[i] == separators[j] && s[i + 1] > 96 && s[i + 1] < 123)
+			{
+				/* capitalize this character and stop checking for separators */
+				s[i + 1] -= 32;
+				break;
+			}
 	}
+
 	return (s);
 }
