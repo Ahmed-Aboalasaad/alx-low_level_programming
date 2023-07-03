@@ -1,7 +1,8 @@
 #include "main.h"
+#include <limits.h>
 
 /**
- * pow - power function
+ * pow_int - power function
  * @b: base
  * @p: power
  *
@@ -12,16 +13,16 @@ int pow_int(int b, int p)
 	int tmp = b;
 
 	if (p == 0)
-		return 1;
+		return (1);
 	if (p == 1)
-		return b;
+		return (b);
 
 	while (p > 1)
 	{
 		b *= tmp;
 		p--;
 	}
-	return b;
+	return (b);
 }
 
 /**
@@ -32,9 +33,16 @@ int pow_int(int b, int p)
  */
 void print_number(int n)
 {
-	int copy = n, digitCount = 0;
+	int copy = n, digitCount = 0, extraDigit = 0;
 
-	/* handle zeroes */
+	/* it n is the smallest number possible, take a digit in your pocket */
+	if (n == INT_MIN)
+	{
+		extraDigit = n % 10;
+		n /= 10;
+	}
+
+	/* handle the zero case */
 	if (n == 0)
 	{
 		_putchar(48);
@@ -63,6 +71,9 @@ void print_number(int n)
 		copy /= pow_int(10, digitCount - 1);
 		_putchar(copy % 10 + 48);
 	}
+
+	if (!extraDigit)
+		_putchar(extraDigit);
 
 }
 
