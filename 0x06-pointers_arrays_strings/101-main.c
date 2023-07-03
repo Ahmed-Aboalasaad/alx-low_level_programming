@@ -1,5 +1,6 @@
 #include "main.h"
 #include <limits.h>
+#include <stdio.h>
 
 /**
  *  * main - check the code
@@ -8,7 +9,10 @@
  *     */
 int main(void)
 {
+	printf("The min int is: %d\n", INT_MIN);
+	printf("and it's divided by 10 will be: %d\n", INT_MIN / 10);
 	print_number(INT_MIN);
+	_putchar('\n');
 	    print_number(98);
 		    _putchar('\n');
 			    print_number(402);

@@ -33,22 +33,19 @@ int pow_int(int b, int p)
  */
 void print_number(int n)
 {
-	int copy = n, digitCount = 0, extraDigit = 0;
-
+	int copy = n, digitCount = 0, extraDigit = '#';
 	/* it n is the smallest number possible, take a digit in your pocket */
 	if (n == INT_MIN)
 	{
-		extraDigit = n % 10;
+		extraDigit = -1 * (n % 10);
 		n /= 10;
 	}
-
 	/* handle the zero case */
 	if (n == 0)
 	{
 		_putchar(48);
 		return;
 	}
-
 	/* handle negative values */
 	if (n < 0)
 	{
@@ -56,14 +53,12 @@ void print_number(int n)
 		n = -n;
 		copy = n;
 	}
-
 	/* count the digits */
 	while (copy > 0)
 	{
 		copy /= 10;
 		digitCount++;
 	}
-
 	/* print the number */
 	for (; digitCount > 0; digitCount--)
 	{
@@ -71,9 +66,7 @@ void print_number(int n)
 		copy /= pow_int(10, digitCount - 1);
 		_putchar(copy % 10 + 48);
 	}
-
-	if (!extraDigit)
-		_putchar(extraDigit);
-
+	if (extraDigit != '#')
+		_putchar(extraDigit + 48);
 }
 
