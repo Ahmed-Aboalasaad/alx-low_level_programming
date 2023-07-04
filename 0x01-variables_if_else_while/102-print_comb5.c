@@ -9,10 +9,10 @@ int main(void)
 {
 	int i, j;
 
-	// the left number of the 2 2-digit numbers
+	/* the left number of the 2 2-digit numbers */
 	for (i = 0; i < 100; i++)
 	{
-		// the second number of the 2 2-digit numbers
+		/* the second number of the 2 2-digit numbers */
 		for (j = i + 1; j < 100; j++)
 		{
 			putchar(i / 10 + 48);
