@@ -2,35 +2,31 @@
 #include <stdio.h>
 
 /**
-*main - the main fn
-*Return: 0
-*/
+ *main - the main fn
+ *Return: 0
+ */
 int main(void)
 {
-	int i, j, k, l;
+	int i, j;
 
-	for (i = 48; i < 58; i++)
+	// the left number of the 2 2-digit numbers
+	for (i = 0; i < 100; i++)
 	{
-		for (j = 48; i < 58; j++)
+		// the second number of the 2 2-digit numbers
+		for (j = i + 1; j < 100; j++)
 		{
-			for (k = i; k < 58; k++)
-			{
-				for (l = j + 1; l < 58; l++)
-				{
-					putchar(i);
-					putchar(j);
-					putchar(' ');
-					putchar(k);
-					putchar(l);
-					if (!(i == 57 && j == 56 && k == 57 && l == 57))
-					{
-						putchar(',');
-						putchar(' ');
-					}
-				}
-			}
+			putchar(i / 10 + 48);
+			putchar(i % 10 + 48);
+			putchar(' ');
+			putchar(j / 10 + 48);
+			putchar(j % 10 + 48);
+			if (i == 98 && j == 99)
+				continue;
+			putchar(',');
+			putchar(' ');
 		}
 	}
 	putchar('\n');
+
 	return (0);
 }
