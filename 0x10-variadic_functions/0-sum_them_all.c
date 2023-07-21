@@ -6,7 +6,7 @@
  * @n: the number of the parameters to be given
  * Return: the sum
  */
-int sum_them_all(int n, ...)
+int sum_them_all(const unsigned int n, ...)
 {
 	int sum = 0, i;
 
