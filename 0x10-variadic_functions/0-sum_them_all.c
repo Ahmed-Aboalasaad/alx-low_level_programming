@@ -8,7 +8,8 @@
  */
 int sum_them_all(const unsigned int n, ...)
 {
-	int sum = 0, i;
+	int sum = 0;
+	unsigned int i;
 
 	/* make a variable of va_list type to hold the list of arguments */
 	va_list args;
