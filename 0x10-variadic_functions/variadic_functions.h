@@ -1,7 +1,4 @@
-#ifndef VARIADIC_FUNCTIONS_H
-#define VARIADIC_FUNCTIONS_H
+#pragma once
 
 int _putchar(char c);
 int sum_them_all(int n, ...);
-
-#endif
