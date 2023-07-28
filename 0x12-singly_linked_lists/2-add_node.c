@@ -14,7 +14,10 @@ list_t *add_node(list_t **head, const char *str)
 	list_t *new;
 	unsigned int i = 0;
 
+	/* make a new node and fill its members */
 	new = malloc(sizeof(list_t));
+	if (new == NULL)
+		return (NULL);
 	new->str = strdup(str);
 	new->len = 0;
 	for (; str[i]; i++)
