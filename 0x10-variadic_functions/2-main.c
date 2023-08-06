@@ -8,6 +8,6 @@
  */
 int main(void)
 {
-    print_strings(", ", 2, NULL, "");
+    print_strings(", ", 0);
     return (0);
 }
