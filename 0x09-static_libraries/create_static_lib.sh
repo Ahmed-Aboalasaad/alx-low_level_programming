@@ -1,2 +1,2 @@
 #!/bin/bash
-ar crs liball.a *.c
+ar crs liball.a *.o
