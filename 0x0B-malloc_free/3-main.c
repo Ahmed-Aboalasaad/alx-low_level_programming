@@ -39,13 +39,13 @@ int main(void)
 {
 	int **grid;
 
-	grid = alloc_grid(9, 8);
+	grid = alloc_grid(3, INT_MAX);
 	if (grid == NULL)
 	{
 		printf("failure\n");
 		return (1);
 	}
-	print_grid(grid, 9, 8);
+	print_grid(grid, 3, INT_MAX);
 	printf("\n");
 	/*grid[0][3] = 98;
 	grid[3][4] = 402;
