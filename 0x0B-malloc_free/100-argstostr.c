@@ -12,7 +12,7 @@
  */
 char *argstostr(int ac, char **av)
 {
-	int i, j, size = 0, put;
+	int i, j, size = 0, put = 0;
 	char *str;
 
 	/* validate correct input */
