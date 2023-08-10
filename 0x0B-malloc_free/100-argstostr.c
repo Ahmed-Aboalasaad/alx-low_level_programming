@@ -7,7 +7,7 @@
  *
  * @ac: argumet count
  * @av: argument vector
- * Return - Null if ac = 0 or av = Null or failure
+ * Return: Null if ac = 0 or av = Null or failure
  * otherwise, returns a pointer to a new string
  */
 char *argstostr(int ac, char **av)
