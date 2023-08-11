@@ -28,6 +28,6 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	/* set to zeroes */
 	resetter = ptr;
 	for (i = 0; i < nmemb * size; i++)
-		resetter[i] = '0';
+		resetter[i] = 0;
 	return (ptr);
 }
