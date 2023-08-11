@@ -43,10 +43,10 @@ int main(void)
 
 	p = malloc(sizeof(char) * 10);
 	for (i = 0; i < 10; i++)
-		p[i] = 'b';
-	p = _realloc(p, sizeof(char) * 10, sizeof(char) * 15);
+		p[i] = 'w';
+	p = _realloc(p, sizeof(char) * 10, sizeof(char) * 100);
 
-	simple_print_buffer(p, 15);
+	simple_print_buffer(p, 105);
 	free(p);
 	return (0);
 }
