@@ -42,11 +42,19 @@ int main(void)
 	int i;
 
 	p = malloc(sizeof(char) * 10);
+	printf("P Before: %p\n", p);
 	for (i = 0; i < 10; i++)
 		p[i] = 'w';
-	p = _realloc(p, sizeof(char) * 10, sizeof(char) * 100);
+	simple_print_buffer(p, 100);
+	printf("out: \n");
+	simple_print_buffer(p, 100);
 
-	simple_print_buffer(p, 105);
+	p = _realloc(p, sizeof(char) * 10, sizeof(char) * 100);
+	printf("\n\n\nP After: %p\n", p);
+	simple_print_buffer(p, 100);
+	printf("out: \n");
+	simple_print_buffer(p, 100);
 	free(p);
+
 	return (0);
 }

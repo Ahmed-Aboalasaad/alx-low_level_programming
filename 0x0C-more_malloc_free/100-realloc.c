@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "main.h"
 
 /**
@@ -35,12 +36,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 
 	/* Act as malloc */
 	if (ptr == NULL)
-	{
-		new = malloc(new_size);
-		if (new != NULL)
-			free(ptr);
-		return (new);
-	}
+		return (malloc(new_size));
 
 	/* Act as free */
 	if (new_size == 0)
