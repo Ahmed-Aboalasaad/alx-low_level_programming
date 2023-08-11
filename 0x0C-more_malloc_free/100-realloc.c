@@ -10,7 +10,7 @@
  */
 unsigned int min(unsigned int x, unsigned int y)
 {
-    return ((x > y) ? x : y);
+	return ((x > y) ? x : y);
 }
 
 /**
@@ -27,34 +27,35 @@ unsigned int min(unsigned int x, unsigned int y)
  */
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-    void *new;
-    unsigned int i;
+	void *new;
+	unsigned int i;
 
-    if (new_size == old_size)
-        return (ptr);
+	if (new_size == old_size)
+		return (ptr);
 
-    /* Act as malloc */
-    if (ptr == NULL)
-    {
-        new = malloc(new_size);
-        if (new != NULL)
-            free(ptr);
-        return (new);
-    }
+	/* Act as malloc */
+	if (ptr == NULL)
+	{
+		new = malloc(new_size);
+		if (new != NULL)
+			free(ptr);
+		return (new);
+	}
 
-    /* Act as free */
-    if (new_size == 0)
-    {
-        free(ptr);
-        return (NULL);
-    }
+	/* Act as free */
+	if (new_size == 0)
+	{
+		free(ptr);
+		return (NULL);
+	}
 
-    /* Allocate & copy contents */
-    new = malloc(new_size);
-    if (new == NULL)
-        return (NULL);
+	/* Allocate & copy contents */
+	new = malloc(new_size);
+	if (new == NULL)
+		return (NULL);
 
-    for (i = 0; i < min(old_size, new_size); i++)
-        *((char *)new + i) = *((char *)ptr + i);
-    return ((void *)new);
+	for (i = 0; i < min(old_size, new_size); i++)
+		*((char *)new + i) = *((char *)ptr + i);
+	free(ptr);
+	return ((void *)new);
 }

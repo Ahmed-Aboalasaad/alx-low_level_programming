@@ -42,13 +42,11 @@ int main(void)
 	int i;
 
 	p = malloc(sizeof(char) * 10);
-	p = _realloc(p, sizeof(char) * 10, sizeof(char) * 98);
-	i = 0;
-	while (i < 98)
-	{
-		p[i++] = 98;
-	}
-	simple_print_buffer(p, 98);
+	for (i = 0; i < 10; i++)
+		p[i] = 'b';
+	p = _realloc(p, sizeof(char) * 10, sizeof(char) * 15);
+
+	simple_print_buffer(p, 15);
 	free(p);
 	return (0);
 }
