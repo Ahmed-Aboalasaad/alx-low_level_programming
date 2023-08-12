@@ -60,7 +60,8 @@ int main(int argc, char *argv[])
 		result = sum(result, size1 + size2, tmp, strSize(tmp));
 	}
 	result = cleanLeadingZeroes(result);
-
+	free(first);
+	free(second);
 	return (0);
 }
 
@@ -140,7 +141,8 @@ char *sum(char *n1, int size1, char *n2, int size2)
 			result[size1 + 1] = tmp + 48;
 		carry = tmp / 10;
 	}
-
+	free(n1);
+	free(n2);
 	return (result);
 }
 
@@ -250,7 +252,7 @@ char *cleanLeadingZeroes(char *str)
 			continue;
 		result[k++] = str[i];
 	}
-
+	free(str);
 	return (result);
 }
 
@@ -275,7 +277,6 @@ char *concat_zeroes(char *str, int zeroesToAdd)
 
 	/* Allocation & failure check */
 	size = strSize(str);
-	printf("size: %d\n", size);
 	result = malloc(sizeof(*result) * (size + zeroesToAdd) + 1);
 	if (result == NULL)
 	{
@@ -289,7 +290,7 @@ char *concat_zeroes(char *str, int zeroesToAdd)
 		result[i] = str[i];
 	for (i = 0; i < zeroesToAdd; i++)
 		result[i + size] = '0';
-
+	free(str);
 	return (result);
 }
 
