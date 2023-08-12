@@ -10,7 +10,6 @@ char *multiply_1_many(char *str, int size, char c);
 char *cleanLeadingZeroes(char *str);
 char *concat_zeroes(char *str, int zeroesToAdd);
 int strSize(char *str);
-char *allocateWithZeroes(int size);
 
 /**
  * main - multiplies 2 numbers
@@ -46,7 +45,10 @@ int main(int argc, char *argv[])
 		size1 = size2;
 		size2 = i;
 	}
-	/* Now first is the larger number with size1 & second the the smaller wtih size2 */
+	/*
+	 * Now first is the larger number with size1
+	 * & second the the smaller wtih size2
+	 */
 
 	/* Multiplication */
 	result = concat_zeroes("", size1 + size2);
@@ -114,7 +116,8 @@ char *sum(char *n1, int size1, char *n2, int size2)
 		print("Error: n2 > n1\n");
 
 	/* Allocation */
-	result = malloc(sizeof *result * (size1 + 1) + 1); /* 1 for carry & 1 for null */
+	/* 1 for carry & 1 for null */
+	result = malloc(sizeof(*result) * (size1 + 1) + 1);
 	if (result == NULL)
 	{
 		print("Error: Failed to allocate memory while addition\n");
@@ -146,9 +149,9 @@ char *sum(char *n1, int size1, char *n2, int size2)
 /**
  * multiply_1_many - multiplies 2 numbers (second is only of 1 digit)
  *
- * @first: string containing the first numbers' digits
- * @size1: size of first
- * @second: the digit character we are multiplying by
+ * @str: string containing the first numbers' digits
+ * @size: size of first
+ * @c: the digit character we are multiplying by
  * Return: a pointer to a string of the multiplication
  */
 char *multiply_1_many(char *str, int size, char c)
@@ -164,7 +167,8 @@ char *multiply_1_many(char *str, int size, char c)
 	}
 
 	/* Allocation */
-	result = malloc(sizeof *result * (size + 1) + 1); /* 1 for carry & 1 for null */
+	/* 1 for carry & 1 for null */
+	result = malloc(sizeof(*result) * (size + 1) + 1);
 	if (result == NULL)
 	{
 		print("Failed to allocate memory while single digit multiplication\n");
@@ -221,7 +225,8 @@ char *cleanLeadingZeroes(char *str)
 	/* Cleaning leading 0s & Counting */
 	for (i = 0; str[i]; i++)
 	{
-		if (str[i] != '0') /* Drop down the flag when you find a non-zero character */
+		/* Drop down the flag when you find a non-zero character */
+		if (str[i] != '0')
 			leadingZeroes = 0;
 		if (leadingZeroes)
 			continue;
@@ -229,7 +234,7 @@ char *cleanLeadingZeroes(char *str)
 	}
 
 	/* Allocation & failure check */
-	result = malloc(sizeof *result * size + 1);
+	result = malloc(sizeof(*result) * size + 1);
 	if (result == NULL)
 	{
 		print("Failed to allocate memory while cleaning leading 0s\n");
@@ -252,11 +257,10 @@ char *cleanLeadingZeroes(char *str)
 }
 
 /**
- * concat_zeroes - removes zeroes from the beginning of the given
- * string and concatenates 'zeroes' 0s to the end of the string
+ * concat_zeroes - concatenates 0s to the end of the string
  *
  * @str: the string
- * @zeroes: number of zeroes to concatenate at the end
+ * @zeroesToAdd: number of zeroes to concatenate at the end
  * Return: pointer to the cleaned concatenated string
  */
 char *concat_zeroes(char *str, int zeroesToAdd)
@@ -274,7 +278,7 @@ char *concat_zeroes(char *str, int zeroesToAdd)
 	/* Allocation & failure check */
 	size = strSize(str);
 	printf("size: %d\n", size);
-	result = malloc(sizeof *result * (size + zeroesToAdd) + 1);
+	result = malloc(sizeof(*result) * (size + zeroesToAdd) + 1);
 	if (result == NULL)
 	{
 		print("Failed to allocate memory while concatenating zeroes\n");
@@ -292,7 +296,7 @@ char *concat_zeroes(char *str, int zeroesToAdd)
 }
 
 /**
- * getStringSize - #chars in a string
+ * strSize - numbers of chars in a string
  *
  * @str: the string
  * Return: #characters in the given string
@@ -310,43 +314,4 @@ int strSize(char *str)
 	for (i = 0; str[i]; i++)
 		size++;
 	return (size);
-}
-
-/*
-void arrange(char *n1, int size1, char *n2, int size2)
-{
-}
-*/
-
-/**
- * allocateWithZeroes - allocates size chars
- *
- * @size: #chars to allocate
- * Return: a pointer to the allocated string
- */
-char *allocateWithZeroes(int size)
-{
-	char *result;
-	int i;
-
-	/* Input Validation */
-	if (size < 1)
-	{
-		print("Error: allocating size < 1\n");
-		exit(1);
-	}
-
-	/* Allocation & Failure Check */
-	result = malloc(sizeof *result * size + 1);
-	if (result == NULL)
-	{
-		print("Error: failed to allocate space initialized with zeroes\n");
-		exit(1);
-	}
-	result[size] = '\0';
-
-	/* Initialization */
-	for (i = 0; i < size; i++)
-		result[i] = '0';
-	return (result);
 }
