@@ -20,7 +20,7 @@ int strSize(char *str);
 int main(int argc, char *argv[])
 {
 	char *first, *second, *tmp, *result;
-	int i, k, size1, size2;
+	long int i, k, size1, size2;
 
 	if (argc != 3 || !isDigits(argv[1]) || !isDigits(argv[2]))
 	{
@@ -60,8 +60,17 @@ int main(int argc, char *argv[])
 		result = sum(result, size1 + size2, tmp, strSize(tmp));
 	}
 	result = cleanLeadingZeroes(result);
-	free(first);
-	free(second);
+
+	print("Freeing in main()\n\n");
+
+	print(result);
+	print("\nfree result\n");
+	free(result);
+	result = NULL;
+
+	print("free tmp\n");
+	free(tmp);
+
 	return (0);
 }
 
@@ -290,6 +299,7 @@ char *concat_zeroes(char *str, int zeroesToAdd)
 		result[i] = str[i];
 	for (i = 0; i < zeroesToAdd; i++)
 		result[i + size] = '0';
+	printf("free str in concat\n");
 	free(str);
 	return (result);
 }
