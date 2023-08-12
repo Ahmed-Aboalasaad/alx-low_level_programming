@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
 	/* Count & put the larger up*/
 	size1 = strSize(argv[1]);
 	size2 = strSize(argv[2]);
-	if (size1 > size2)
+	if (size1 >= size2)
 	{
 		first = argv[1];
 		second = argv[2];
@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 	/* Now first is the larger number with size1 & second the the smaller wtih size2 */
 
 	/* Multiplication */
-	result = allocateWithZeroes(size1 + size2);
+	result = concat_zeroes("", size1 + size2);
 
 	for (i = size2 - 1, k = 0; i >= 0; i--, k++)
 	{
@@ -199,7 +199,7 @@ char *multiply_1_many(char *str, int size, char c)
  */
 char *cleanLeadingZeroes(char *str)
 {
-	int i, k, size = 0, leadingZeroes = 1;
+	int i, k, size = 0, leadingZeroes = 1, allZeroes = 1;
 	char *result;
 
 	/* Input Validation */
@@ -208,6 +208,15 @@ char *cleanLeadingZeroes(char *str)
 		print("Error: cleaning NULL string\n");
 		exit(1);
 	}
+	/* if the whole number is 0, don't clean anything */
+	for (i = 0; str[i]; i++)
+		if (str[i] != '0')
+		{
+			allZeroes = 0;
+			break;
+		}
+	if (allZeroes)
+		return (str);
 
 	/* Cleaning leading 0s & Counting */
 	for (i = 0; str[i]; i++)
@@ -264,6 +273,7 @@ char *concat_zeroes(char *str, int zeroesToAdd)
 
 	/* Allocation & failure check */
 	size = strSize(str);
+	printf("size: %d\n", size);
 	result = malloc(sizeof *result * (size + zeroesToAdd) + 1);
 	if (result == NULL)
 	{
@@ -275,9 +285,9 @@ char *concat_zeroes(char *str, int zeroesToAdd)
 	/* build result (copy str & add zeroes) */
 	for (i = 0; str[i]; i++)
 		result[i] = str[i];
-	while (result[i])
-		result[i] = '0';
-	printf("Concatenating 0s was made:)\nResult: %s\n\n", result);
+	for (i = 0; i < zeroesToAdd; i++)
+		result[i + size] = '0';
+	printf("Concatenating %d 0s was made:)\nResult: %s\n\n", zeroesToAdd, result);
 	return (result);
 }
 
