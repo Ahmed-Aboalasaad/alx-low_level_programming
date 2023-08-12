@@ -4,7 +4,6 @@
 
 void print(char *str);
 int isDigits(char *str);
-void arrange(char *n1, int size1, char *n2, int size2);
 char *sum(char *n1, int size1, char *n2, int size2);
 char *multiply_1_many(char *str, int size, char c);
 char *cleanLeadingZeroes(char *str);
@@ -62,7 +61,6 @@ int main(int argc, char *argv[])
 	}
 	result = cleanLeadingZeroes(result);
 
-	printf("success\nFinal Result: %s\n", result);
 	return (0);
 }
 
@@ -142,7 +140,7 @@ char *sum(char *n1, int size1, char *n2, int size2)
 			result[size1 + 1] = tmp + 48;
 		carry = tmp / 10;
 	}
-	printf("Sum was made :)\nResult: %s\n\n", result);
+
 	return (result);
 }
 
@@ -191,7 +189,7 @@ char *multiply_1_many(char *str, int size, char c)
 			result[size + 1] = tmp + 48;
 		carry = tmp / 10;
 	}
-	printf("single miltiplication was made :)\nResult: %s\n\n", result);
+
 	return (result);
 }
 
@@ -252,7 +250,7 @@ char *cleanLeadingZeroes(char *str)
 			continue;
 		result[k++] = str[i];
 	}
-	printf("Cleaning leading digits was made :)\nResult: %s\n\n", result);
+
 	return (result);
 }
 
@@ -291,7 +289,7 @@ char *concat_zeroes(char *str, int zeroesToAdd)
 		result[i] = str[i];
 	for (i = 0; i < zeroesToAdd; i++)
 		result[i + size] = '0';
-	printf("Concatenating %d 0s was made:)\nResult: %s\n\n", zeroesToAdd, result);
+
 	return (result);
 }
 
