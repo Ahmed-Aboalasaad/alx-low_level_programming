@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "main.h"
 
 /**
@@ -10,7 +11,7 @@
  */
 unsigned int min(unsigned int x, unsigned int y)
 {
-	return ((x > y) ? x : y);
+	return ((x > y) ? y : x);
 }
 
 /**
@@ -28,7 +29,7 @@ unsigned int min(unsigned int x, unsigned int y)
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
 	void *new;
-	unsigned int i;
+	unsigned int i, minimum = min(old_size, new_size);
 
 	if (new_size == old_size)
 		return (ptr);
@@ -48,7 +49,7 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	new = malloc(new_size);
 	if (new == NULL)
 		return (NULL);
-	for (i = 0; i < min(old_size, new_size); i++)
+	for (i = 0; i < minimum; i++)
 		*((char *)new + i) = *((char *)ptr + i);
 	free(ptr);
 	return (new);

@@ -41,20 +41,16 @@ int main(void)
 	char *p;
 	int i;
 
-	p = malloc(sizeof(char) * 10);
-	printf("P Before: %p\n", p);
-	for (i = 0; i < 10; i++)
-		p[i] = 'w';
-	simple_print_buffer(p, 100);
-	printf("out: \n");
-	simple_print_buffer(p, 100);
-
-	p = _realloc(p, sizeof(char) * 10, sizeof(char) * 100);
-	printf("\n\n\nP After: %p\n", p);
-	simple_print_buffer(p, 100);
-	printf("out: \n");
-	simple_print_buffer(p, 100);
+	p = malloc(sizeof(char) * 30);
+	p = _realloc(p, sizeof(char) * 30, sizeof(char) * 120);
+	if (p == NULL)
+		printf("_realloc() returned a null pointer\n");
+	i = 0;
+	while (i < 30)
+	{
+		p[i++] = 98;
+	}
+	simple_print_buffer(p, 120);
 	free(p);
-
 	return (0);
 }
