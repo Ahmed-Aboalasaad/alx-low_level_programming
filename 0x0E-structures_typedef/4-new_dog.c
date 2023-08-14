@@ -15,8 +15,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 	int i, nameCharCount = 0, ownerCharCount = 0, failure;
 	dog_t *dog = malloc(sizeof(dog_t));
 
-	failure = name == NULL || name[0] == '\0';
-	failure = failure || (owner == NULL || owner[0] == '\0');
+	failure = (name == NULL || owner == NULL);
 	failure = failure || (dog == NULL);
 	if (failure)
 	{
