@@ -12,31 +12,41 @@
 dog_t *new_dog(char *name, float age, char *owner)
 {
 	int i, nameCharCount = 0, ownerCharCount = 0;
-	dog_t dog;
-	dog_t *dogy = &dog;
+	dog_t *dog = malloc(sizeof(dog_t));
 
+	/* Struct */
+	if (dog == NULL)
+		return (NULL);
+
+	/* Name */
 	for (i = 0; name[i]; i++)
 		nameCharCount++;
-	dogy->name = malloc(sizeof(char) * nameCharCount);
-	if (dogy->name == NULL)
+	dog->name = malloc(sizeof(char) * nameCharCount + 1);
+	if (dog->name == NULL)
 	{
+		free(dog);
 		return (NULL);
 	}
+	dog->name[nameCharCount] = '\0';
 	for (i = 0; i < nameCharCount; i++)
-		dogy->name[i] = name[i];
+		dog->name[i] = name[i];
 
+	/* Owner */
 	for (i = 0; owner[i]; i++)
 		ownerCharCount++;
-	dogy->owner = malloc(sizeof(char) * ownerCharCount);
-	if (dogy->owner == NULL)
+	dog->owner = malloc(sizeof(char) * ownerCharCount);
+	if (dog->owner == NULL)
 	{
-		free(dogy->name);
+		free(dog->name);
+		free(dog);
 		return (NULL);
 	}
+	dog->owner[ownerCharCount] = '\0';
 	for (i = 0; i < ownerCharCount; i++)
-		dogy->owner[i] = owner[i];
+		dog->owner[i] = owner[i];
 
-	dogy->age = age;
+	/* Age */
+	dog->age = age;
 
-	return (dogy);
+	return (dog);
 }
