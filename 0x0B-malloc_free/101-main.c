@@ -1,6 +1,7 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /**
  * print_tab - Prints an array of string
@@ -25,14 +26,22 @@ void print_tab(char **tab)
  */
 int main(void)
 {
-	char **tab;
+	/*char **tab; */
 
-	tab = strtow("Ahmed Abo");
+	/*
+	tab = strtow("    Ahmed Abo      Abo      ");
 	if (tab == NULL)
 	{
 		printf("Failed\n");
 		return (1);
 	}
+
 	print_tab(tab);
+	*/
+	char *str = strdup("   Ahme  d");
+
+	cleanLeadingSpaces(str);
+	printf("str: %s\n", str);
+
 	return (0);
 }
