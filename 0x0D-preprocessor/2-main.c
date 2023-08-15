@@ -1,26 +1,13 @@
 #include <unistd.h>
 
-int _putchar(char c);
-
 int main(void)
 {
 	int i;
+	char c = '\n';
 
 	for (i = 0; __FILE__[i]; i++)
-		_putchar(__FILE__[i]);
-	_putchar('\n');
+		write(1, &__FILE__[i], 1);
+	write(1, &c, 1);
 
 	return (0);
-}
-
-/**
- * _putchar - writes the character c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
 }
