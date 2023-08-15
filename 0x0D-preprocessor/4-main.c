@@ -9,9 +9,9 @@
  */
 int main(void)
 {
-	int s;
+	long int s;
 
-	s = SUM(98, 1024);
-	printf("%d\n", s);
+	s = SUM(15, 45);
+	printf("%ld\n", s);
 	return (0);
 }
