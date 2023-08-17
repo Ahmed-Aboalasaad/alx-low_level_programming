@@ -15,6 +15,7 @@ void print_strings(const char *separator, const unsigned int n, ...)
 	char *next = "ahmed";
 	va_list args;
 
+	va_start(args, n);
 	if (n == 0)
 	{
 		printf("\n");
@@ -22,12 +23,10 @@ void print_strings(const char *separator, const unsigned int n, ...)
 		return;
 	}
 
-	va_start(args, n);
-
 	for (i = 0; i < n; i++)
 	{
 		next = va_arg(args, char *);
-		if (next == NULL || next[0] == 0)
+		if (next == NULL)
 			printf("(nil)");
 		else
 			printf("%s", next);
