@@ -12,18 +12,23 @@
  */
 void print_all(const char *const format, ...)
 {
-	int i = 0, separate;
+	int i = 0, j = 0, separate;
 	char *str;
 	va_list args;
 
 	va_start(args, format);
-	i = 0;
 	while (format[i])
 	{
-		separate = (i != 0) && (format[i + 1] != '\0') && (format[i - 1] == 'c' ||
-		format[i - 1] == 'i' || format[i - 1] == 'f' || format[i - 1] == 's');
-		if (separate)
-			printf(", ");
+		j = i + 1, separate = 0;
+		while (format[j])
+		{
+			if (format[j] == 'c' || format[j] == 'i' || format[j] == 'f' || format[j] == 's')
+			{
+				separate = 1;
+				break;
+			}
+			j++;
+		}
 		switch (format[i])
 		{
 		case 'c':
@@ -37,18 +42,14 @@ void print_all(const char *const format, ...)
 			break;
 		case 's':
 			str = va_arg(args, char *);
-			if (str == NULL)
-			{
-				printf("(nil)");
-				break;
-			}
-			printf("%s", str);
+			printf("%s", ((str == NULL) ? "(nil)" : str));
 			break;
 		default:
-			i++;
-			continue;
+			separate = 0;
 		}
 		i++;
+		if (separate)
+			printf(", ");
 	}
 	printf("\n");
 	va_end(args);
