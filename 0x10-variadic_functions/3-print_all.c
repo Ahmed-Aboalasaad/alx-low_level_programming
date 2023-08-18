@@ -1,52 +1,6 @@
-#include "variadic_functions.h"
 #include <stdio.h>
 #include <stdarg.h>
-
-void print_char(void *ptr)
-{
-    printf("%c", *(char *)ptr);
-}
-
-void print_integer(void *ptr)
-{
-    printf("%d", *(int *)ptr);
-}
-
-void print_float(void *ptr)
-{
-    printf("%f", *(float *)ptr);
-}
-
-void print_string(void *ptr)
-{
-    printf("%s", (char *)ptr);
-}
-
-typedef struct printable
-{
-    char type;
-    void (*f)(void *);
-}printable;
-
-void (*get_printer(char type))(void *ptr)
-{
-    int i = 0;
-    printable types[] = {
-        {'c', print_char},
-        {'i', print_integer},
-        {'f', print_float},
-        {'s', print_string},
-        {'\0', NULL}
-    };
-
-    while (types[i].type != '\0')
-    {
-        if (types[i].type == type)
-            return (types[i].f);
-        i++;
-    }
-    return (NULL);
-}
+#include "variadic_functions.h"
 
 /**
  * print_all - prints anything
@@ -57,23 +11,48 @@ void (*get_printer(char type))(void *ptr)
  */
 void print_all(const char *const format, ...)
 {
-    int i;
-    void (*printer)(void *ptr);
+    int i = 0, size = 0;
+    char *str;
 
     va_list args;
     va_start(args, format);
-    /* parse the format */    
-    /*while (format[i])
+    
+    while (format[i++])
+        size++;
+
+    i = 0;
+    while (i < size)
     {
-        printer = get_printer(format[i]);
-        if (printer != NULL)
-            printer(va_arg(args, ));
+        switch (format[i])
+        {
+        case 'c':
+            printf("%c", va_arg(args, int));
+            break;
+        case 'i':
+            printf("%d", va_arg(args, int));
+            break;
+        case 'f':
+            printf("%f", va_arg(args, double));
+            break;
+        case 's':
+            str = va_arg(args, char *);
+            if (str == NULL)
+            {
+                printf("(nil)");
+                break;
+            }
+            printf("%s", str);
+            break;
+        default:
+            i++;
+            continue;
+            break;
+        }
+        if (i != size - 1)
+            printf(", ");
         i++;
-    }*/
-    printf("%c\n", va_arg(args, int));
-    (void) printer;
-    (void) format;
-    (void) i;
+    }
+    printf("\n");
     va_end(args);
 }
 
