@@ -19,6 +19,7 @@ int main(void)
 	add_node_end(&head, "love");
 	add_node_end(&head, "asm");
 	print_list(head);
+	printf("freeing\n");
 	free_list(head);
 	printf("freed\n");
 	/* print_list(head); */

@@ -9,18 +9,24 @@
  */
 void free_list(list_t *head)
 {
-	list_t *tmp;
+	list_t *last, *before_last;
 
 	if (!head) /* if no nodes exist */
 		return;
 
+	last = head;
 	while (head)
 	{
-		tmp = head;
-		/* go to the last node */
-		while (tmp->next)
-			tmp = tmp->next;
-		free(tmp->str);
-		free(tmp);
+		last = head;
+		while (last->next)
+		{
+			before_last = last;
+			last = last->next;
+		}
+		before_last->next = NULL;
+		free(last->str);
+		free(last);
+		if (before_last == last)
+			head = NULL;
 	}
 }
