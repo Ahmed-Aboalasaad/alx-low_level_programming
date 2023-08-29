@@ -11,8 +11,8 @@
 */
 listint_t *add_nodeint_end(listint_t **head, const int n)
 {
-	listint_t *new;
-	
+	listint_t *new, *tmp;
+
 	/* Input Validation */
 	if (!head)
 		return (NULL);
@@ -25,9 +25,10 @@ listint_t *add_nodeint_end(listint_t **head, const int n)
 
 	if (*head)
 	{
-		while ((*head)->next)
-			*head = (*head)->next;
-		(*head)->next = new;
+		tmp = *head;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
 	}
 	else /* no nodes */
 		*head = new;
