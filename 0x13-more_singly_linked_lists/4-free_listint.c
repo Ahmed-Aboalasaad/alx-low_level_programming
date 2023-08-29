@@ -25,7 +25,7 @@ void free_listint(listint_t *head)
 		}
 		if (last == head)
 			head = NULL;
-		free(last);
 		before_last->next = NULL;
+		free(last);
 	}
 }
