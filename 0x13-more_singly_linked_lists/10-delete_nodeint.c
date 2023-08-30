@@ -23,7 +23,7 @@ size_t length(listint_t *h)
 /**
  * delete_nodeint_at_index - deletes the node at index index of a list
  *
- * @haed: the list head
+ * @head: the list head
  * @index: the indes to delete from
  * Return: 1 if it succeeded, -1 if it failed
 */
@@ -34,7 +34,7 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 
 	if (!head || index >= length(*head))
 		return (-1);
-	
+
 	if (index == 0) /* Remove the first node */
 	{
 		delete = *head;
