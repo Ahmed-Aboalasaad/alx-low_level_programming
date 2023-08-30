@@ -3,7 +3,7 @@
 #include "lists.h"
 
 /**
- * listint_len - counts #elements in the list
+ * length - counts #elements in the list
  *
  * @h: the list head
  * Return: #elements in the list
