@@ -10,12 +10,12 @@
 */
 void free_listint2(listint_t **head)
 {
-    listint_t *last, *before_last;
+	listint_t *last, *before_last;
 
 	if (!head)
 		return;
 
-	while (head)
+	while (*head)
 	{
 		last = *head;
 		while (last->next)
@@ -26,6 +26,6 @@ void free_listint2(listint_t **head)
 		before_last->next = NULL;
 		free(last);
 		if (last == before_last)
-			head = NULL;
+			*head = NULL;
 	}
 }
