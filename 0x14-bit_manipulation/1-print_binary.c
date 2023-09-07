@@ -12,7 +12,7 @@
 void print_binary(unsigned long int n)
 {
 	int bits;
-	int msb; /* most significant bit */
+	unsigned long msb; /* most significant bit */
 	char print; /* flag to allow printing */
 
 	if (n == 0)
@@ -21,7 +21,7 @@ void print_binary(unsigned long int n)
 		return;
 	}
 
-	for (bits = sizeof(unsigned long int) * 8, print = 0; bits--;)
+	for (bits = sizeof(long) * 8, print = 0; bits--;)
 	{
 		msb = n & 1UL << bits;
 		if (msb)
