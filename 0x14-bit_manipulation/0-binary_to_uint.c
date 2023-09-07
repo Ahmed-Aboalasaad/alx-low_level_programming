@@ -16,7 +16,7 @@ unsigned int binary_to_uint(const char *b)
 {
 	unsigned int result, bitCount, i;
 
-	if (!valid(b) || !b)
+	if (!b || !valid(b))
 		return (0);
 
 	result = 0;
