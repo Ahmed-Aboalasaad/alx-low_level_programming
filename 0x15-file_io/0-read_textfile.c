@@ -33,6 +33,10 @@ size_t read_textfile(const char *filename, size_t letters)
 	if (readno == -1) /* Error or signal interrupt */
 		return (0);
 
+	/* Close the file */
+	close(fd);
+
 	/* Write to the stdout */
 	return (write(1, buffer, (readno == 0) ? letters : (size_t)readno));
+
 }
