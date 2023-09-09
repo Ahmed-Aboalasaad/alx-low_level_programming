@@ -16,6 +16,7 @@
 size_t read_textfile(const char *filename, size_t letters)
 {
 	int readno, fd;
+	size_t printed;
 	char *buffer;
 
 	/* Input Validation */
@@ -37,6 +38,6 @@ size_t read_textfile(const char *filename, size_t letters)
 	close(fd);
 
 	/* Write to the stdout */
-	return (write(1, buffer, (readno == 0) ? letters : (size_t)readno));
-
+	printed = (readno == 0) ? letters : (size_t)readno;
+	return (write(STDOUT_FILENO, buffer, printed));
 }
