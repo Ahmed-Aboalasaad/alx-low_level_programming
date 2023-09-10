@@ -103,5 +103,7 @@ int main(int argc, char **argv)
 	/* Close */
 	if (close(fdFrom) == -1)
 		errorMessage("Error: Can't close fd ", intToStr(fdFrom), 100);
+	if (close(fdTo) == -1)
+		errorMessage("Error: Can't close fd ", intToStr(fdTo), 100);
 	return (0);
 }
