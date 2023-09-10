@@ -76,12 +76,12 @@ int main(int argc, char **argv)
 
 	/* Input Validation */
 	if (argc != 3)
-		errorMessage("Usage: cp file_from file_to\n", NULL, 97);
+		errorMessage("Usage: cp file_from file_to", NULL, 97);
 
 	/* Get The Files Ready */
 	fdFrom = open(argv[1], O_RDONLY);
 	if (fdFrom == -1)
-		errorMessage("Error: Can't read from file", argv[1], 98);
+		errorMessage("Error: Can't read from file ", argv[1], 98);
 
 	fdTo = creat(argv[2], S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	if (fdTo == -1)
@@ -95,7 +95,7 @@ int main(int argc, char **argv)
 	{
 		readBytesCount = read(fdFrom, buffer, BUFFER_SIZE);
 		if (readBytesCount == -1)
-			errorMessage("Error: Can't read from file", argv[1], 98);
+			errorMessage("Error: Can't read from file ", argv[1], 98);
 		if (write(fdTo, buffer, readBytesCount) == -1)
 			errorMessage("Error: Can't write to ", argv[2], 99);
 	}
