@@ -24,9 +24,6 @@ int append_text_to_file(const char *filename, char *text_content)
 	for (length = 0; text_content[length];)
 		length++;
 	if (write(fd, text_content, length) == -1)
-	{
-		printf("couldn't write to %d\n", fd);
 		return (-1);
-	}
 	return (1);
 }
