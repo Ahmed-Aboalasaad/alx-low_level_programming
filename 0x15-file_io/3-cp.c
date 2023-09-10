@@ -96,7 +96,7 @@ int main(int argc, char **argv)
 		readBytesCount = read(fdFrom, buffer, BUFFER_SIZE);
 		if (readBytesCount == -1)
 			errorMessage("Error: Can't read from file ", argv[1], 98);
-		if (write(fdTo, buffer, readBytesCount) == -1)
+		if (write(fdTo, buffer, readBytesCount) != readBytesCount)
 			errorMessage("Error: Can't write to ", argv[2], 99);
 	}
 
