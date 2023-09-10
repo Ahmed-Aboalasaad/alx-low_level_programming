@@ -13,17 +13,20 @@
 */
 int append_text_to_file(const char *filename, char *text_content)
 {
-    int fd;
-    size_t length;
+	int fd;
+	size_t length;
 
-    if (!filename)
-        return (-1);
-    fd = open(filename, O_APPEND);
-    if (!text_content)
-        return ((fd < 0) ? -1 : 1);
-    for (length = 0; text_content[length];)
-        length++;
-    if (write(fd, text_content, length) < 0)
-        return (-1);
-    return (1);
+	if (!filename)
+		return (-1);
+	fd = open(filename, O_APPEND | O_WRONLY);
+	if (!text_content)
+		return ((fd < 0) ? -1 : 1);
+	for (length = 0; text_content[length];)
+		length++;
+	if (write(fd, text_content, length) == -1)
+	{
+		printf("couldn't write to %d\n", fd);
+		return (-1);
+	}
+	return (1);
 }
