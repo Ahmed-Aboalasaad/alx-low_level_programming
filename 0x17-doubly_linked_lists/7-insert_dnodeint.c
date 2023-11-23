@@ -50,7 +50,7 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	}
 
 	len = dlistint_len(*h);
-	if (idx == len - 1) /* Insert it at the end*/
+	if (idx == len) /* Insert it at the end*/
 	{
 		for (tmp = *h; tmp->next; )
 			tmp = tmp->next;
@@ -60,7 +60,7 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 		return (new);
 	}
 
-	if (idx >= len) /* Index out of range */
+	if (idx > len) /* Index out of range */
 		return (NULL);
 	/* Insert it in between the head & tail */
 	for (tmp = *h; idx > 1; idx--)
