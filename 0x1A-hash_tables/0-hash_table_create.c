@@ -9,20 +9,20 @@
 */
 hash_table_t *hash_table_create(unsigned long int size)
 {
-    unsigned int i;
-    hash_table_t *ht;
-    
-    if (size == 0)
-        return (NULL);
+	unsigned int i;
+	hash_table_t *ht;
 
-    ht = malloc(sizeof(*ht));
-    if (!ht)
-        return (NULL);
-    ht->size = size;
-    ht->array = malloc(sizeof(*(ht->array)) * size);
-    if (!(ht->array))
-        return (NULL);
-    for (i = 0; i < size; i++)
-        (ht->array)[0] = NULL;
-    return (ht);
+	if (size == 0)
+		return (NULL);
+
+	ht = malloc(sizeof(*ht));
+	if (!ht)
+		return (NULL);
+	ht->size = size;
+	ht->array = malloc(sizeof(*(ht->array)) * size);
+	if (!(ht->array))
+		return (NULL);
+	for (i = 0; i < size; i++)
+		(ht->array)[0] = NULL;
+	return (ht);
 }
