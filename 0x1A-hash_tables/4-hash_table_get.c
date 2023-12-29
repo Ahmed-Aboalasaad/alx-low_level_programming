@@ -7,15 +7,15 @@
  * @key: the key you're looking for
  * Return: the value associated with teh key, or NULL if it wasn't found
 */
-const char *hash_table_get(const hash_table_t *ht, const char *key)
+char *hash_table_get(const hash_table_t *ht, const char *key)
 {
-	unsigned long index = key_index((const unsigned char *)key, ht->size);
+    unsigned long index = key_index((const unsigned char *)key, ht->size);
 	hash_node_t *j;
 
-	if (!ht || !key)
-		return (NULL);
-	for (j = ht->array[index]; j; j = j->next)
-		if (equal(j->key, key))
-			return (j->value);
-	return (NULL);
+    if (!ht || !key)
+        return (NULL);
+    for (j = ht->array[index]; j; j = j->next)
+        if (equal(j->key, key))
+            return (j->value);
+    return (NULL);
 }
