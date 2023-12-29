@@ -1,6 +1,28 @@
 #include "hash_tables.h"
 
 /**
+ * printHT - prints the content of a hash table
+ *
+ * @ht: pointer to the hash table
+ * Return: nothgin
+*/
+void printHT(hash_table_t *ht)
+{
+	unsigned long i;
+	hash_node_t *j;
+
+	if (!ht)
+		return;
+	for (i = 0; i < ht->size; i++)
+	{
+		printf("[ %ld ] -> ", i);
+		for (j = ht->array[i]; j; j = j->next)
+			printf("['%s' : '%s'] -> ", j->key, j->value);
+		printf("N\n");
+	}
+}
+
+/**
  * copyStr - copies a string into another one
  *
  * @source: the string to be copied
