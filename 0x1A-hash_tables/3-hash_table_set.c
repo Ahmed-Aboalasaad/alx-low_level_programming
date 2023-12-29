@@ -125,8 +125,8 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 			return (0);
 		new->key = copyStr(key);
 		new->value = copyStr(value);
-		new->next = NULL;
-		tmp->next = new;
+		new->next = ht->array[index];
+		ht->array[index] = new;
 	}
 	return (1);
 }

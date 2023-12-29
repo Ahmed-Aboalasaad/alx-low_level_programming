@@ -12,16 +12,10 @@ int main(void)
 {
 	hash_table_t *ht;
 
-	ht = hash_table_create(1024);
-	hash_table_set(ht, "betty", "cool");
-	hash_table_set(ht, "hetairas", "1");
-	hash_table_set(ht, "mentioner", "2");
-	hash_table_set(ht, "heliotropes", "3");
-	hash_table_set(ht, "neurospora", "4");
-	hash_table_set(ht, "depravement", "5");
-	hash_table_set(ht, "serafins", "6");
-	hash_table_set(ht, "depravement", "500");
-	hash_table_set(ht, "serafins", "600");
+	ht = hash_table_create(30);
+	hash_table_set(ht, "Germany", "Berlin");
+	hash_table_set(ht, "China", "Geijing");
+
 	printHT(ht);
 
 	return (EXIT_SUCCESS);
