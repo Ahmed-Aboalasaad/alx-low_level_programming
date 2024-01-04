@@ -9,13 +9,15 @@
 */
 char *hash_table_get(const hash_table_t *ht, const char *key)
 {
-    unsigned long index = key_index((const unsigned char *)key, ht->size);
+	unsigned long index;
 	hash_node_t *j;
 
-    if (!ht || !key)
-        return (NULL);
-    for (j = ht->array[index]; j; j = j->next)
-        if (equal(j->key, key))
-            return (j->value);
-    return (NULL);
+	if (!ht || !key)
+		return (NULL);
+
+	index = key_index((const unsigned char *)key, ht->size);
+	for (j = ht->array[index]; j; j = j->next)
+		if (equal(j->key, key))
+			return (j->value);
+	return (NULL);
 }
