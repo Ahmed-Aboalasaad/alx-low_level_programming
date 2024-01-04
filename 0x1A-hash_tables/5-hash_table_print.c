@@ -8,22 +8,22 @@
 */
 void hash_table_print(const hash_table_t *ht)
 {
+	char printedBefore;
 	unsigned long i;
 	hash_node_t *j;
 
 	if (!ht)
 		return;
 	printf("{");
-	for (i = 0; i < ht->size; i++)
+	for (i = 0, printedBefore = 0; i < ht->size; i++)
 	{
 		for (j = ht->array[i]; j; j = j->next)
 		{
-			printf("'%s': '%s'", j->key, j->value);
-			if (j->next)
+			if (printedBefore)
 				printf(", ");
+			printf("'%s': '%s'", j->key, j->value);
+			printedBefore = 1;
 		}
-		if (ht->array[i])
-			printf(", ");
 	}
 	printf("}\n");
 }
