@@ -17,6 +17,6 @@ int main(void)
 	hash_table_set(ht, "China", "Geijing");
 
 	printHT(ht);
-
+	printf("FINISHED SETTING\n");
 	return (EXIT_SUCCESS);
 }

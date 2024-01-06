@@ -14,7 +14,7 @@ int main(void)
 	// char *key;
 	// char *value;
 
-	ht = hash_table_create(1024);
+	ht = hash_table_create(15);
 	hash_table_set(ht, "c", "fun");
 	hash_table_set(ht, "python", "awesome");
 	hash_table_set(ht, "Bob", "and Kris love asm");
@@ -29,12 +29,12 @@ int main(void)
 	// value[0] = '\0';
 	// free(key);
 	// free(value);
-	hash_table_set(ht, "98", "Battery Street"); 
-	hash_table_set(ht, "hetairas", "Bob");
-	hash_table_set(ht, "hetairas", "Bob Z");
+	// hash_table_set(ht, "98", "Battery Street"); 
+	// hash_table_set(ht, "hetairas", "Bob");
+	// hash_table_set(ht, "hetairas", "Bob Z");
 	hash_table_set(ht, "mentioner", "Bob");
 	hash_table_set(ht, "hetairas", "Bob Z Chu");
-	hash_table_print(ht);
+	printHT(ht);
 	hash_table_delete(ht);
 	return (EXIT_SUCCESS);
 }

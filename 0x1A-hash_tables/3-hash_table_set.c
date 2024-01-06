@@ -90,13 +90,12 @@ int equal(const char *s1, const char *s2)
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long index;
-	hash_node_t *tmp, *new;
+	hash_node_t *tmp = NULL, *new = NULL;
 
 	if (!ht || !key || !value)
 		return (0);
 	index = key_index((unsigned char *)key, ht->size);
-	tmp = ht->array[index];
-	if (!tmp) /* no nodes yet in this slot.. allocate one and add it */
+	if (!(ht->array[index])) /* no nodes yet in this slot.. allocate one and add it */
 	{
 		new = malloc(sizeof(*new));
 		if (!new)
@@ -107,10 +106,11 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		ht->array[index] = new;
 		return (1);
 	} /* There is at least one node */
-	for (; tmp->next; tmp = tmp->next)
+	for (tmp = ht->array[index]; tmp->next; tmp = tmp->next)
 	{
 		if (equal(tmp->key, key)) /* if it was added before, just update it */
 		{
+			free(tmp->value);
 			tmp->value = copyStr(value);
 			return (1);
 		}
