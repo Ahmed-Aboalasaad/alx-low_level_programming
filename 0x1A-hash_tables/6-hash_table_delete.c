@@ -1,7 +1,7 @@
 #include "hash_tables.h"
 
 /**
- * freeNode - frees a hash table node
+ * deleteNode - frees a hash table node
  *
  * @head: a pointer to the node head
  * Return: void
@@ -21,7 +21,6 @@ void deleteNode(hash_node_t **head)
 		for (last = beforeLast = *head; last->next; last = last->next)
 			beforeLast = last;
 		beforeLast->next = NULL;
-		// printf("Freed key: %s & value: %s\n", last->key, last->value);
 		free(last->key);
 		free(last->value);
 		free(last);
@@ -47,8 +46,6 @@ void hash_table_delete(hash_table_t *ht)
 		return;
 	for (i = 0; i < ht->size; i++)
 		deleteNode(&(ht->array[i]));
-	printf("Nodes finished\n");
 	free(ht->array);
 	free(ht);
-	printf("Fninshed Deleting :)\n");
 }
