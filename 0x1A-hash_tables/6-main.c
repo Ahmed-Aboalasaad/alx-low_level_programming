@@ -16,12 +16,14 @@ int main(void)
 
 	ht = hash_table_create(15);
 	hash_table_set(ht, "c", "fun");
+	hash_table_set(ht, "c", "Boring");
 	hash_table_set(ht, "python", "awesome");
 	hash_table_set(ht, "Bob", "and Kris love asm");
 	hash_table_set(ht, "N", "queens");
 	hash_table_set(ht, "Asterix", "Obelix");
 	hash_table_set(ht, "Betty", "Cool");
 	hash_table_set(ht, "98", "Battery Streetz");
+
 	key = strdup("Tim");
 	value = strdup("Britton");
 	hash_table_set(ht, key, value);
@@ -29,12 +31,13 @@ int main(void)
 	value[0] = '\0';
 	free(key);
 	free(value);
+
 	hash_table_set(ht, "98", "Battery Street");
 	hash_table_set(ht, "hetairas", "Bob");
 	hash_table_set(ht, "hetairas", "Bob Z");
 	hash_table_set(ht, "mentioner", "Bob");
 	hash_table_set(ht, "hetairas", "Bob Z Chu");
-	printHT(ht);
+	// printHT(ht);
 	hash_table_delete(ht);
 	return (EXIT_SUCCESS);
 }

@@ -101,9 +101,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		new = malloc(sizeof(*new));
 		if (!new)
 			return (0);
-		new->key = copyStr(key);
-		new->value = copyStr(value);
-		new->next = NULL;
+		new->key = copyStr(key), new->value = copyStr(value), new->next = NULL;
 		ht->array[index] = new;
 		return (1);
 	} /* There is at least one node */
@@ -117,14 +115,16 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		}
 	} /* Now, I'm pointing to the last node in the list */
 	if (equal(tmp->key, key)) /* Either update the if it has the same key */
+	{
+		free(tmp->value);
 		tmp->value = copyStr(value);
+	}
 	else /* or add a new one */
 	{
 		new = malloc(sizeof(*new));
 		if (!new)
 			return (0);
-		new->key = copyStr(key);
-		new->value = copyStr(value);
+		new->key = copyStr(key), new->value = copyStr(value);
 		new->next = ht->array[index];
 		ht->array[index] = new;
 	}
