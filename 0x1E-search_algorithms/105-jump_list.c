@@ -4,6 +4,41 @@
 #include "search_algos.h"
 
 /**
+ * firstBlockHelper - Searches the first block for jump_list()
+ *
+ * @list: the list
+ * @size: #elements in the list
+ * @value: the value to search for
+ * @low: pointer to the low pointer of jump_list()
+ * @high: pointer ot the high pointer of jump_list()
+ *
+ * Return: pointer to the found node, NULL otherwise
+ */
+listint_t *firstBlockHelper(listint_t *list, size_t size, int value,
+						listint_t **low, listint_t **high)
+{
+	size_t jump;
+	listint_t *result;
+
+	jump = sqrt(size);
+	result = NULL;
+	for ((*low) = (*high) = list; (*high)->index < jump;
+								(*high) = (*high)->next)
+		if (value == (*high)->n)
+			result = (*high);
+	if (!result)
+		return (NULL);
+	printf("Value checked at index [%ld] = [%d]\n",
+			(*high)->index, (*high)->n);
+	printf("Value found between indexes [%ld] and [%ld]\n",
+			(*low)->index, (*high)->index);
+
+	for (; (*low)->index <= result->index; (*low) = (*low)->next)
+		printf("Value checked at index [%ld] = [%d]\n", (*low)->index, (*low)->n);
+	return (result);
+}
+
+/**
  * jump_list - performs jump search on a sinlgy linked list
  *
  * @list: pointer to the list head
@@ -19,27 +54,14 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 
 	if (!list)
 		return (NULL);
-	jump = sqrt(size);
-	printf("== Searching for %d ==\n", value);
 
 	/* Search the first block */
-	result = NULL;
-	for (low = high = list; high->index < jump; high = high->next)
-		if (value == high->n)
-			result = high;
+	jump = sqrt(size);
+	result = firstBlockHelper(list, size, value, &low, &high);
 	if (result)
-	{
-		printf("Value checked at index [%ld] = [%d]\n", high->index, high->n);
-		printf("Value found between indexes [%ld] and [%ld]\n", low->index, high->index);
-		
-		for (; low->index <= result->index; low = low->next)
-			printf("Value checked at index [%ld] = [%d]\n", low->index, low->n);
 		return (result);
-	}
-	
 
 	/* Find the block*/
-	printf("No result was found in the first block\n");
 	for (; high->next; high = high->next, low = low->next)
 	{
 		if (high->index % jump == 0) /* print at block edges */
@@ -50,13 +72,15 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 			break;
 		}
 	}
-	for (; high->next && high->index % jump != 0; low = low->next)
-		high = high->next;
-	printf("Value checked at index [%ld] = [%d]\n", high->index, high->n);
-	printf("Value found between indexes [%ld] and [%ld]\n", low->index, high->index);
-
-	
-	/* No need for Linear Search as we found the value already.. Just mimic */
+	for (; low->index % jump != 0; low = low->next)
+		if (high->next)
+			high = high->next;
+	printf("Value checked at index [%ld] = [%d]\n",
+							high->index, high->n);
+	printf("Value found between indexes [%ld] and [%ld]\n",
+							low->index, high->index);
+	if (!result)
+		return (NULL);
 	for (; low->index <= result->index; low = low->next)
 		printf("Value checked at index [%ld] = [%d]\n", low->index, low->n);
 	return (result);
