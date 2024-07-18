@@ -39,7 +39,7 @@ int recursiveBinarySearch(int *array, size_t start, size_t end, int value)
 			return (mid);
 	}
 	else if (array[mid] > value)
-		return (recursiveBinarySearch(array, start, mid - 1, value));
+		return (recursiveBinarySearch(array, start, mid, value));
 	else
 		return (recursiveBinarySearch(array, mid + 1, end, value));
 }

@@ -14,30 +14,30 @@
  */
 listint_t *jump_list(listint_t *list, size_t size, int value)
 {
-    int jump;
-    char found;
+	int jump;
+	char found;
 	size_t i;
+	listint_t *result;
 
-    listint_t *result;
-    if (!list)
-        return (NULL);
+	if (!list)
+		return (NULL);
 
-    jump = sqrt(size);
-    for (result = list; result->next; result = result->next)
-    {
-        /* start printing after the first jump*/
-        if (result->index % jump == 0 && result->index != 0)
-            printf("Value checked at index [%ld] = [%d]", result->index, result->n);
-        if (result->n == value)
-            break;        
-    }
-    if (result->next)
-
-
+	jump = sqrt(size);
+	for (result = list; result->next; result = result->next)
+	{
+		/* start printing after the first jump*/
+		if (result->index % jump == 0 && result->index != 0)
+			printf("Value checked at index [%ld] = [%d]", result->index, result->n);
+		if (result->n == value)
+			break;
+	}
+	if (result->next)
 
 
 
-    /* Find the suitable block */
+
+
+	/* Find the suitable block */
 	jump = sqrt(size);
 	while (1)
 	{
@@ -51,7 +51,7 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 		low += jump, high += jump;
 	}
 
-    /* Linear Search in the block */
+	/* Linear Search in the block */
 	for (; low <= high && low < size; low++)
 	{
 		printf("Value checked array[%ld] = [%d]\n", low, array[low]);
