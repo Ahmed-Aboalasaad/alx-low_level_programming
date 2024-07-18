@@ -14,49 +14,50 @@
  */
 listint_t *jump_list(listint_t *list, size_t size, int value)
 {
-	int jump;
-	char found;
-	size_t i;
-	listint_t *result;
+	size_t jump;
+	listint_t *result, *low, *high;
 
 	if (!list)
 		return (NULL);
-
 	jump = sqrt(size);
-	for (result = list; result->next; result = result->next)
+	printf("== Searching for %d ==\n", value);
+
+	/* Search the first block */
+	result = NULL;
+	for (low = high = list; high->index < jump; high = high->next)
+		if (value == high->n)
+			result = high;
+	if (result)
 	{
-		/* start printing after the first jump*/
-		if (result->index % jump == 0 && result->index != 0)
-			printf("Value checked at index [%ld] = [%d]", result->index, result->n);
-		if (result->n == value)
-			break;
+		printf("Value checked at index [%ld] = [%d]\n", high->index, high->n);
+		printf("Value found between indexes [%ld] and [%ld]\n", low->index, high->index);
+		
+		for (; low->index <= result->index; low = low->next)
+			printf("Value checked at index [%ld] = [%d]\n", low->index, low->n);
+		return (result);
 	}
-	if (result->next)
+	
 
-
-
-
-
-	/* Find the suitable block */
-	jump = sqrt(size);
-	while (1)
+	/* Find the block*/
+	printf("No result was found in the first block\n");
+	for (; high->next; high = high->next, low = low->next)
 	{
-
-		printf("Value checked array[%ld] = [%d]\n", low, array[low]);
-		if (high >= size || value <= array[high])
+		if (high->index % jump == 0) /* print at block edges */
+			printf("Value checked at index [%ld] = [%d]\n", high->index, high->n);
+		if (high->n == value)
 		{
-			printf("Value found between indexes [%ld] and [%ld]\n", low, high);
+			result = high;
 			break;
 		}
-		low += jump, high += jump;
 	}
+	for (; high->next && high->index % jump != 0; low = low->next)
+		high = high->next;
+	printf("Value checked at index [%ld] = [%d]\n", high->index, high->n);
+	printf("Value found between indexes [%ld] and [%ld]\n", low->index, high->index);
 
-	/* Linear Search in the block */
-	for (; low <= high && low < size; low++)
-	{
-		printf("Value checked array[%ld] = [%d]\n", low, array[low]);
-		if (array[low] == value)
-			return (low);
-	}
-	return (-1);
+	
+	/* No need for Linear Search as we found the value already.. Just mimic */
+	for (; low->index <= result->index; low = low->next)
+		printf("Value checked at index [%ld] = [%d]\n", low->index, low->n);
+	return (result);
 }
