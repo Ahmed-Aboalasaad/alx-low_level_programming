@@ -80,7 +80,9 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 	printf("Value found between indexes [%ld] and [%ld]\n",
 							low->index, high->index);
 	if (!result)
+	{
 		return (NULL);
+	}
 	for (; low->index <= result->index; low = low->next)
 		printf("Value checked at index [%ld] = [%d]\n", low->index, low->n);
 	return (result);
